@@ -11,7 +11,7 @@ steps:
         composition:
             test:
               image: ${{build-step}}
-              depends_on:
+              links:
                 - db
             db:
               image: mysql:latest
