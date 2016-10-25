@@ -4,27 +4,31 @@ steps:
         type: build
         image-name: codefreshio/nodejs-mysql-example
         dockerfile: Dockerfile
+        working-directory: ${{initial-clone}}
         tag: latest
+
+    gen-image:
+        image: node:latest
+        working-directory: ${{initial-clone}}
+        commands:
+            - npm install -g gulp
 
     unit-test:
         type: composition
+        working-directory: ${{initial-clone}}
         composition:
-            test:
-              image: ${{build-step}}
-              links:
-                - db
-            db:
-              image: mysql:latest
-              ports:
-                - 3306
-              environment:
-                MYSQL_ROOT_PASSWORD: admin
-                MYSQL_USER: root
-                MYSQL_PASSWORD: admin
-                MYSQL_DATABASE: nodejs
+            version: '2'
+            services:
+                db:
+                  image: mysql:latest
+                  ports:
+                    - 3306
+                  environment:
+                    MYSQL_ROOT_PASSWORD: admin
+                    MYSQL_USER: root
+                    MYSQL_PASSWORD: admin
+                    MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
-              image: node:latest
-              links:
-                - db
-              command: bash -c "npm test"
+              image: ${{unit-image}}
+              command: npm test
