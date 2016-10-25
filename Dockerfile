@@ -9,4 +9,5 @@ ONBUILD COPY package.json /usr/src/app/
 ONBUILD RUN npm install
 RUN npm install -g gulp
 RUN npm install gulp
+
 ONBUILD COPY . /usr/src/app
