@@ -1,5 +1,14 @@
 version: '1.0'
 steps:
+
+    install-dependencies:
+        image: verchol/node-tools:all
+        working-directory : ${{initial-clone}}
+        fail-fast: true
+        commands:
+          - npm install -g gulp
+          - npm install gulp
+
     build-step:
         type: build
         image-name: codefreshio/nodejs-mysql-example
@@ -8,7 +17,7 @@ steps:
 
     unit-test:
         type: composition
-        working-directory: ${{build-step}}
+        working-directory: ${{initial-clone}}
         composition:
             version: '2'
             services:
@@ -23,5 +32,5 @@ steps:
                     MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
-              image: verchol/node-tools:all
-              command: gulp unit_test
+              image: ${{build-step}}
+              command: bash -c "ls -l && cd /usr/src/app && gulp unit_test"
