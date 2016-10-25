@@ -2,12 +2,10 @@ version: '1.0'
 steps:
 
     install-dependencies:
-        image: verchol/node-tools:all
+        image: node:latest
         working-directory : ${{initial-clone}}
-        fail-fast: true
         commands:
           - npm install -g gulp
-          - npm install gulp
 
     build-step:
         type: build
