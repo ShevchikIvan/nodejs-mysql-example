@@ -11,6 +11,8 @@ steps:
         composition:
             test:
               image: ${{build-step}}
+              depends_on:
+                - db
               links:
                 - db
             db:
@@ -25,6 +27,8 @@ steps:
         composition-candidates:
             test:
               image: ${{build-step}}
+              depends_on:
+                - db
               links:
                 - db
         commands:
