@@ -23,5 +23,5 @@ steps:
                     MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
-              image: node:latest
+              image: verchol/node-tools:all
               command: npm test
