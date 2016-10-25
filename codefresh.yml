@@ -4,12 +4,11 @@ steps:
         type: build
         image-name: codefreshio/nodejs-mysql-example
         dockerfile: Dockerfile
-        working-directory: ${{initial-clone}}
         tag: latest
 
     unit-test:
         type: composition
-        working-directory: ${{initial-clone}}
+        working-directory: ${{build-step}}
         composition:
             version: '2'
             services:
