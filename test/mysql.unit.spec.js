@@ -7,7 +7,7 @@ describe('mysql test', () => {
 
     before(() => {
         connection = mysql.createConnection({
-            host     : 'localhost',
+
             user     : 'root',
             password : 'admin',
             database : 'nodejs'
