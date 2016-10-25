@@ -24,7 +24,7 @@ steps:
                 MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
-              image: ${{build-step}}
+              image: node:latest
               links:
                 - db
               command: bash -c "npm test"
