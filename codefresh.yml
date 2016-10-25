@@ -30,5 +30,5 @@ steps:
                     MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
-              image: ${{unit-image}}
+              image: ${{gen-image}}
               command: npm test
