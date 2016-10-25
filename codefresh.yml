@@ -13,10 +13,8 @@ steps:
               image: ${{build-step}}
               depends_on:
                 - db
-              links:
-                - db
             db:
-              image: mysql
+              image: mysql:latest
               ports:
                 - 3306
               environment:
@@ -27,8 +25,6 @@ steps:
         composition-candidates:
             test:
               image: ${{build-step}}
-              depends_on:
-                - db
               links:
                 - db
         commands:
