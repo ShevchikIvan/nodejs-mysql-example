@@ -31,4 +31,4 @@ steps:
         composition-candidates:
             test:
               image: ${{build-step}}
-              command: bash -c "ls -l && cd /usr/src/app && gulp unit_test"
+            command: - bash -c "ls -l && cd /usr/src/app && gulp unit_test"
