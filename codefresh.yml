@@ -25,6 +25,8 @@ steps:
         composition-candidates:
             test:
               image: ${{build-step}}
+              links:
+                - db
         commands:
             - npm install -g gulp
             - npm test
