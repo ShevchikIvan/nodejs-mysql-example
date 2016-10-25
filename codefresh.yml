@@ -24,4 +24,4 @@ steps:
         composition-candidates:
             test:
               image: verchol/node-tools:all
-              command: npm test
+              command: gulp unit_test
