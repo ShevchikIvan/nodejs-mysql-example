@@ -1,16 +1,16 @@
 "use strict";
 
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
 describe('mysql test', () => {
     var connection;
 
     before(() => {
         connection = mysql.createConnection({
-            host     : 'db',
-            user     : 'my_user',
-            password : 'admin',
-            database : 'nodejs'
+            host     : process.env.MYSQL_HOST,
+            user     : process.env.MYSQL_USER,
+            password : process.env.MYSQL_PASSWORD,
+            database : process.env.MYSQL_DATABASE
         });
     });
 
@@ -18,7 +18,7 @@ describe('mysql test', () => {
         connection.connect(function(err) {
             if (err) {
                 console.error('error connecting: ' + err.stack);
-                done(err);
+                throw new Error(err);
             }
             console.log('connected as id ' + connection.threadId);
             done();

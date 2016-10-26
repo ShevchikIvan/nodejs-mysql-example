@@ -3,10 +3,10 @@
 var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
-    host     : 'db',
-    user     : 'my_user',
-    password : 'admin',
-    database : 'nodejs'
+    host     : process.env.MYSQL_HOST,
+    user     : process.env.MYSQL_USER,
+    password : process.env.MYSQL_PASSWORD,
+    database : process.env.MYSQL_DATABASE
 });
 
 var QUERY_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS `names` (`id` int(10) unsigned NOT NULL auto_increment, `name` varchar(50) NOT NULL default '0', PRIMARY KEY  (`id`))";

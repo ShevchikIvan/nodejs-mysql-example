@@ -23,12 +23,18 @@ gulp.task('lint', ['clean'], function () {
 });
 
 gulp.task('set_unit_env_vars', function () {
-    var CF_TOKEN = process.env.CF_TOKEN;
-    var CF_HOST = process.env.CF_HOST;
+    var MYSQL_ROOT_PASSWORD = process.env.MYSQL_ROOT_PASSWORD;
+    var MYSQL_USER = process.env.MYSQL_USER;
+    var MYSQL_HOST = process.env.MYSQL_HOST;
+    var MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
+    var MYSQL_DATABASE = process.env.MYSQL_DATABASE;
     env({
         vars: {
-            CF_TOKEN: CF_TOKEN,
-            CF_HOST: CF_HOST
+            MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD,
+            MYSQL_USER: MYSQL_USER,
+            MYSQL_PASSWORD: MYSQL_PASSWORD,
+            MYSQL_DATABASE: MYSQL_DATABASE,
+            MYSQL_HOST: MYSQL_HOST
         }
     });
 });
