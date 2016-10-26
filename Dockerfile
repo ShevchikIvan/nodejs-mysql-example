@@ -8,6 +8,5 @@ ENV NODE_ENV $NODE_ENV
 COPY package.json /usr/src/app/
 RUN npm install
 RUN npm install -g gulp
-RUN npm install gulp
 
 COPY . /usr/src/app
