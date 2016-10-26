@@ -1,12 +1,5 @@
 version: '1.0'
 steps:
-
-    install-dependencies:
-        image: node:latest
-        working-directory : ${{initial-clone}}
-        commands:
-          - npm install -g gulp
-
     build-step:
         type: build
         image-name: codefreshio/nodejs-mysql-example
@@ -19,16 +12,16 @@ steps:
         composition:
             version: '2'
             services:
-                db:
-                  image: mysql:latest
-                  ports:
-                    - 3306
-                  environment:
-                    MYSQL_ROOT_PASSWORD: admin
-                    MYSQL_USER: my_user
-                    MYSQL_PASSWORD: admin
-                    MYSQL_DATABASE: nodejs
+              db:
+                image: mysql:latest
+                ports:
+                  - 3306
+                environment:
+                  MYSQL_ROOT_PASSWORD: admin
+                  MYSQL_USER: my_user
+                  MYSQL_PASSWORD: admin
+                  MYSQL_DATABASE: nodejs
         composition-candidates:
             test:
               image: ${{build-step}}
-            command: - bash -c "ls -l && cd /usr/src/app && gulp unit_test"
+            command: bash -c "sleep 30 && MYSQL_ROOT_PASSWORD=admin MYSQL_USER=my_user MYSQL_HOST=db MYSQL_PASSWORD=admin MYSQL_DATABASE=nodejs npm test"
